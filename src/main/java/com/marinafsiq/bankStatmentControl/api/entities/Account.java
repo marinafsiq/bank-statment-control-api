@@ -1,13 +1,16 @@
 package com.marinafsiq.bankStatmentControl.api.entities;
 
+import com.marinafsiq.bankStatmentControl.api.enums.BankEnum;
+
 public class Account {
 	
 	private Long id;
-	private String bank;
+	private BankEnum bank;
 	private int account;
 	private int agency;
 	private String password;
 	private Person pessoa;
+	private String category;
 	
 	public Long getId() {
 		return id;
@@ -15,10 +18,13 @@ public class Account {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getBank() {
+	
+	
+	
+	public BankEnum getBank() {
 		return bank;
 	}
-	public void setBank(String bank) {
+	public void setBank(BankEnum bank) {
 		this.bank = bank;
 	}
 	public int getAccount() {
@@ -44,6 +50,12 @@ public class Account {
 	}
 	public void setPessoa(Person pessoa) {
 		this.pessoa = pessoa;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 	

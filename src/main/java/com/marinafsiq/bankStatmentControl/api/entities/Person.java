@@ -2,9 +2,12 @@ package com.marinafsiq.bankStatmentControl.api.entities;
 
 import java.util.ArrayList;
 
+import com.marinafsiq.bankStatmentControl.api.enums.PerfilEnum;
+
 public class Person {
 	
 	private Long id;
+	private PerfilEnum perfil;
 	private String name;
 	private String email;
 	private String password;
@@ -17,6 +20,14 @@ public class Person {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public PerfilEnum getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(PerfilEnum perfil) {
+		this.perfil = perfil;
+	}
+	
 	public String getName() {
 		return name;
 	}
