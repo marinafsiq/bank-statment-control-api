@@ -1,10 +1,27 @@
 package com.marinafsiq.bankStatmentControl.api.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.marinafsiq.bankStatmentControl.api.enums.PerfilEnum;
 
-public class Person {
+@Entity
+@Table(name = "person")
+public class Person implements Serializable{
+	
+	private static final long serialVersionUID = 4763869710847384492L;
 	
 	private Long id;
 	private PerfilEnum perfil;
@@ -13,7 +30,11 @@ public class Person {
 	private String password;
 	private String cpf;
 	private ArrayList<Account> accounts;
+	private ArrayList<Purchase> purchases;
+
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -21,6 +42,8 @@ public class Person {
 		this.id = id;
 	}
 	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "perfil", nullable = false)
 	public PerfilEnum getPerfil() {
 		return perfil;
 	}
@@ -28,35 +51,52 @@ public class Person {
 		this.perfil = perfil;
 	}
 	
+	@Column(name = "name", nullable = false)
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Column(name = "email", nullable = false)
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Column(name = "password", nullable = false)
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Column(name = "cpf", nullable = false)
 	public String getCpf() {
 		return cpf;
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
+	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public ArrayList<Account> getAccounts() {
 		return accounts;
 	}
 	public void setAccounts(ArrayList<Account> accounts) {
 		this.accounts = accounts;
+	}
+	
+	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public ArrayList<Purchase> getPurchases() {
+		return purchases;
+	}
+	public void setPurchases(ArrayList<Purchase> purchases) {
+		this.purchases = purchases;
 	}
 	
 	

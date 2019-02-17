@@ -1,8 +1,25 @@
 package com.marinafsiq.bankStatmentControl.api.entities;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import com.marinafsiq.bankStatmentControl.api.enums.BankEnum;
 
-public class Account {
+@Entity
+@Table(name = "account")
+public class Account implements Serializable{
+	
+	private static final long serialVersionUID = -903921164858973921L;
 	
 	private Long id;
 	private BankEnum bank;
@@ -10,8 +27,10 @@ public class Account {
 	private int agency;
 	private String password;
 	private Person pessoa;
-	private String category;
+
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -20,44 +39,46 @@ public class Account {
 	}
 	
 	
-	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "bank", nullable = false)
 	public BankEnum getBank() {
 		return bank;
 	}
 	public void setBank(BankEnum bank) {
 		this.bank = bank;
 	}
+	
+	@Column(name = "account", nullable = false)
 	public int getAccount() {
 		return account;
 	}
 	public void setAccount(int account) {
 		this.account = account;
 	}
+	
+	@Column(name = "agency", nullable = false)
 	public int getAgency() {
 		return agency;
 	}
 	public void setAgency(int agency) {
 		this.agency = agency;
 	}
+	
+	@Column(name = "password", nullable = false)
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Person getPessoa() {
 		return pessoa;
 	}
 	public void setPessoa(Person pessoa) {
 		this.pessoa = pessoa;
 	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	
-	
+		
 
 }
