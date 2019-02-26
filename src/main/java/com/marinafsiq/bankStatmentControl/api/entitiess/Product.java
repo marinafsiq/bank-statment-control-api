@@ -1,4 +1,4 @@
-package com.marinafsiq.bankStatmentControl.api.entities;
+package com.marinafsiq.bankStatmentControl.api.entitiess;
 
 import java.io.Serializable;
 
@@ -27,6 +27,8 @@ public class Product implements Serializable{
 	private float unitValue;
 	private float itemValue;
 	private NotaFiscal notaFiscal;
+	
+	public Product() {}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

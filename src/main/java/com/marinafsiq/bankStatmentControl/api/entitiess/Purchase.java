@@ -1,4 +1,4 @@
-package com.marinafsiq.bankStatmentControl.api.entities;
+package com.marinafsiq.bankStatmentControl.api.entitiess;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.marinafsiq.bankStatmentControl.api.enums.PaymentMathodEnum;
 import com.marinafsiq.bankStatmentControl.api.enums.PaymentTypeEnum;
@@ -39,6 +41,8 @@ public class Purchase implements Serializable{
 	private int currentInstallment;
 	private int totalNumOfInstallment;
 	
+	public Purchase() {}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
@@ -56,6 +60,7 @@ public class Purchase implements Serializable{
 		this.purchase = purchase;
 	}
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_time", nullable = false)
 	public Date getDateTime() {
 		return dateTime;

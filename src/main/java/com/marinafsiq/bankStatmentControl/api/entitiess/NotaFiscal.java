@@ -1,9 +1,8 @@
-package com.marinafsiq.bankStatmentControl.api.entities;
+package com.marinafsiq.bankStatmentControl.api.entitiess;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "notaFiscal")
@@ -32,7 +33,9 @@ public class NotaFiscal implements Serializable{
 	private float credit;
 	private float creditSituation;
 	private Purchase purchase; 
-	private ArrayList<Product> products;
+	private List<Product> products;
+	
+	public NotaFiscal() {}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -67,6 +70,7 @@ public class NotaFiscal implements Serializable{
 		this.numNota = numNota;
 	}
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "issued_date", nullable = false)
 	public Date getIssuedDate() {
 		return issuedDate;
@@ -83,6 +87,7 @@ public class NotaFiscal implements Serializable{
 		this.value = value;
 	}
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "registation_date", nullable = true)
 	public Date getRegistrationDate() {
 		return registrationDate;
@@ -116,10 +121,10 @@ public class NotaFiscal implements Serializable{
 	}
 	
 	@OneToMany(mappedBy = "notaFiscal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public ArrayList<Product> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
-	public void setProducts(ArrayList<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 	

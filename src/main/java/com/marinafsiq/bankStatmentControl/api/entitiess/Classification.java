@@ -1,8 +1,7 @@
-package com.marinafsiq.bankStatmentControl.api.entities;
+package com.marinafsiq.bankStatmentControl.api.entitiess;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,7 +21,9 @@ public class Classification implements Serializable{
 	
 	private Long id;
 	private String name;
-	private ArrayList<SubClassification> subClassification;
+	private List<SubClassification> subClassification;
+	
+	public Classification() {}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,10 +43,10 @@ public class Classification implements Serializable{
 	}
 	
 	@OneToMany(mappedBy = "classification", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public ArrayList<SubClassification> getSubClassification() {
+	public List<SubClassification> getSubClassification() {
 		return subClassification;
 	}
-	public void setSubClassification(ArrayList<SubClassification> subClassification) {
+	public void setSubClassification(List<SubClassification> subClassification) {
 		this.subClassification = subClassification;
 	}
 	

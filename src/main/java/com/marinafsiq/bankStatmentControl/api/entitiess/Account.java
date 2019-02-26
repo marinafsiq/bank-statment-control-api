@@ -1,7 +1,7 @@
-package com.marinafsiq.bankStatmentControl.api.entities;
+package com.marinafsiq.bankStatmentControl.api.entitiess;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,10 +29,12 @@ public class Account implements Serializable{
 	private int account;
 	private int agency;
 	private String password;
-	private Person pessoa;
-	private ArrayList<Purchase> purchases;
-	private ArrayList<Card> cards;
+	private Person person;
+	private List<Purchase> purchases;
+	private List<Card> cards;
 
+	
+	public Account() {}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -78,26 +80,26 @@ public class Account implements Serializable{
 	}
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	public Person getPessoa() {
-		return pessoa;
+	public Person getPerson() {
+		return person;
 	}
-	public void setPessoa(Person pessoa) {
-		this.pessoa = pessoa;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 	
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public ArrayList<Purchase> getPurchases() {
+	public List<Purchase> getPurchases() {
 		return purchases;
 	}
-	public void setPurchases(ArrayList<Purchase> purchases) {
+	public void setPurchases(List<Purchase> purchases) {
 		this.purchases = purchases;
 	}
 	
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public ArrayList<Card> getCards() {
+	public List<Card> getCards() {
 		return cards;
 	}
-	public void setCards(ArrayList<Card> cards) {
+	public void setCards(List<Card> cards) {
 		this.cards = cards;
 	}
 	

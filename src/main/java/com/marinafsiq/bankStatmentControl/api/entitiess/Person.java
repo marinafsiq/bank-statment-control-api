@@ -1,7 +1,7 @@
-package com.marinafsiq.bankStatmentControl.api.entities;
+package com.marinafsiq.bankStatmentControl.api.entitiess;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,8 +29,11 @@ public class Person implements Serializable{
 	private String email;
 	private String password;
 	private String cpf;
-	private ArrayList<Account> accounts;
-	private ArrayList<Purchase> purchases;
+	private List<Account> accounts;
+	private List<Purchase> purchases;
+	
+	
+	public Person() {}
 
 	
 	@Id
@@ -84,18 +87,18 @@ public class Person implements Serializable{
 	}
 	
 	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public ArrayList<Account> getAccounts() {
+	public List<Account> getAccounts() {
 		return accounts;
 	}
-	public void setAccounts(ArrayList<Account> accounts) {
+	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
 	
 	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public ArrayList<Purchase> getPurchases() {
+	public List<Purchase> getPurchases() {
 		return purchases;
 	}
-	public void setPurchases(ArrayList<Purchase> purchases) {
+	public void setPurchases(List<Purchase> purchases) {
 		this.purchases = purchases;
 	}
 	

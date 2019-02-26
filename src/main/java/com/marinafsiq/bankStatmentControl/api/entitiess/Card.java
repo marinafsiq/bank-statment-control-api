@@ -1,10 +1,9 @@
-package com.marinafsiq.bankStatmentControl.api.entities;
+package com.marinafsiq.bankStatmentControl.api.entitiess;
 
 import java.io.Serializable;
 import java.util.Date;
 
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "card")
@@ -27,6 +28,8 @@ public class Card implements Serializable{
 	private Date expireDate;
 	private Account account;
 	private Purchase purchase;
+	
+	public Card() {}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -53,6 +56,7 @@ public class Card implements Serializable{
 		this.number = number;
 	}
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "expire_date", nullable = false)
 	public Date getExpireDate() {
 		return expireDate;
@@ -69,7 +73,7 @@ public class Card implements Serializable{
 		this.account = account;
 	}
 	
-	@OneToMany(mappedBy="card", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToOne(optional = true)
 	public Purchase getPurchase() {
 		return purchase;
 	}
