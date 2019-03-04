@@ -18,7 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "notaFiscal")
+@Table(name = "nota_fiscal")
 public class NotaFiscal implements Serializable{
 	
 	private static final long serialVersionUID = -7223760143350778787L;
