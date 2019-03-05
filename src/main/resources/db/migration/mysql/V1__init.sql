@@ -14,8 +14,7 @@
         expire_date datetime not null,
         nickname varchar(255) not null,
         number integer not null,
-        account_id bigint,
-        purchase_id bigint,
+        person_id bigint,
         primary key (id)
     ) engine=InnoDB;
 
@@ -107,6 +106,7 @@
         primary key (id)
     ) engine=InnoDB;
 
+
 -- AUTO_INCREMENT for tables ---------------------------
     ALTER TABLE account
        MODIFY id bigint(20) NOT NULL AUTO_INCREMENT;
@@ -134,20 +134,16 @@
 
 --------------------------------------------------------
 
+
     alter table account 
        add constraint FKd9dhia7smrg88vcbiykhofxee 
        foreign key (person_id) 
        references person (id);
 
     alter table card 
-       add constraint FK8v67eys6tqflsm6hrdgru2phu 
-       foreign key (account_id) 
-       references account (id);
-
-    alter table card 
-       add constraint FK4hcaobpmu73sm26in8ps8e66b 
-       foreign key (purchase_id) 
-       references purchase (id);
+       add constraint FKdm0fet7hk8scrokevcqoiwyrh 
+       foreign key (person_id) 
+       references person (id);
 
     alter table nota_fiscal 
        add constraint FK24np7how8rbauq2sl0h6e7fek 
