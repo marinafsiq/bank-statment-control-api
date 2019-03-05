@@ -2,8 +2,9 @@ package com.marinafsiq.bankStatmentControl.api.entitiess;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,8 +27,8 @@ public class Card implements Serializable{
 	private String nickname;
 	private int number;
 	private Date expireDate;
-	private Account account;
-	private Purchase purchase;
+	private List<Purchase> purchases;
+	private Person person;
 	
 	public Card() {}
 	
@@ -64,24 +65,22 @@ public class Card implements Serializable{
 	public void setExpireDate(Date expireDate) {
 		this.expireDate = expireDate;
 	}
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	public Account getAccount() {
-		return account;
+		
+	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public List<Purchase> getPurchases() {
+		return purchases;
 	}
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-	
-	@OneToOne(optional = true)
-	public Purchase getPurchase() {
-		return purchase;
-	}
-	public void setPurchase(Purchase purchase) {
-		this.purchase = purchase;
+	public void setPurchases(List<Purchase> purchases) {
+		this.purchases = purchases;
 	}
 	
-	
+	@ManyToOne(fetch = FetchType.EAGER)
+	public Person getPerson() {
+		return person;
+	}
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 	
 	
 

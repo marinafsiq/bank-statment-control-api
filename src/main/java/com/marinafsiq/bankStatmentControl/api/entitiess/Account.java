@@ -31,7 +31,6 @@ public class Account implements Serializable{
 	private String password;
 	private Person person;
 	private List<Purchase> purchases;
-	private List<Card> cards;
 
 	
 	public Account() {}
@@ -94,17 +93,6 @@ public class Account implements Serializable{
 	public void setPurchases(List<Purchase> purchases) {
 		this.purchases = purchases;
 	}
-	
-	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public List<Card> getCards() {
-		return cards;
-	}
-	public void setCards(List<Card> cards) {
-		this.cards = cards;
-	}
-	
-	
-	
 		
 
 }

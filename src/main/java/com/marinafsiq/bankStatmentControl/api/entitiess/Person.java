@@ -30,6 +30,7 @@ public class Person implements Serializable{
 	private String password;
 	private String cpf;
 	private List<Account> accounts;
+	private List<Card> cards;
 	private List<Purchase> purchases;
 	
 	
@@ -94,6 +95,17 @@ public class Person implements Serializable{
 		this.accounts = accounts;
 	}
 	
+	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public List<Card> getCards() {
+		return cards;
+	}
+
+
+	public void setCards(List<Card> cards) {
+		this.cards = cards;
+	}
+
+
 	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<Purchase> getPurchases() {
 		return purchases;
