@@ -46,7 +46,7 @@ public class PurchaseRepositoryTest {
 		
 		this.accountRepository.save(account);
 		this.personRepository.save(person);
-		this.purchaseRepository.saveAll(purchases);
+		this.purchaseRepository.save(purchases);
 	}
 	
 	@After
