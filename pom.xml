@@ -78,6 +78,13 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
+		<!-- Permite usar features do Java 8 na hora da conversao -->
+		<!-- conversor de requests para DTO -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jdk8</artifactId>
+		</dependency>
+		
 	</dependencies>
 	
 		
