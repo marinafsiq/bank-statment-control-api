@@ -34,10 +34,18 @@ public class PersonServiceImpl implements PersonService{
 	}
 
 	@Override
+	public Optional<Person> findById(Long id) {
+		log.info("Finding a person by id: {}", id);
+		Person person = personRepository.findById(id);
+		return Optional.ofNullable(person);
+	}
+	
+	@Override
 	public Person persist(Person person) {
 		log.info("Saving person {}", person.getName());
 		Person per = personRepository.save(person);
 		return per;
 	}
+
 
 }

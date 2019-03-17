@@ -1,6 +1,7 @@
 package com.marinafsiq.bankStatmentControl.api.entitiess;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -89,6 +90,8 @@ public class Person implements Serializable{
 	
 	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<Account> getAccounts() {
+		if(accounts==null)
+			accounts = new ArrayList<Account>();
 		return accounts;
 	}
 	public void setAccounts(List<Account> accounts) {
@@ -97,6 +100,8 @@ public class Person implements Serializable{
 	
 	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<Card> getCards() {
+		if(cards==null)
+			cards = new ArrayList<Card>();
 		return cards;
 	}
 
@@ -108,6 +113,8 @@ public class Person implements Serializable{
 
 	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<Purchase> getPurchases() {
+		if(purchases==null)
+			purchases = new ArrayList<Purchase>();
 		return purchases;
 	}
 	public void setPurchases(List<Purchase> purchases) {

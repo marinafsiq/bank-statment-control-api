@@ -21,6 +21,12 @@ public interface PersonService {
 	 * */
 	Optional<Person> findByEmail(String email);
 	
+	/**
+	 * Return a Person given his/her id
+	 * @param id
+	 * @return Optional<Person>
+	 * */
+	Optional<Person> findById(Long id);
 	
 	/**
 	 * Persist/Save a new person in the database
