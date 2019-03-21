@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.marinafsiq.bankStatmentControl.api.entitiess.Person;
@@ -33,14 +35,14 @@ public class PersonServiceImpl implements PersonService{
 		return Optional.ofNullable(person);
 	}
 
-	@Override
+	@Cacheable("personPerId")
 	public Optional<Person> findById(Long id) {
 		log.info("Finding a person by id: {}", id);
 		Person person = personRepository.findById(id);
 		return Optional.ofNullable(person);
 	}
 	
-	@Override
+	@CachePut("personPerId")
 	public Person persist(Person person) {
 		log.info("Saving person {}", person.getName());
 		Person per = personRepository.save(person);
