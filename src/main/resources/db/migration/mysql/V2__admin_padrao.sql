@@ -1,0 +1,1 @@
+INSERT INTO `person`(`id`, `cpf`, `email`, `name`, `password`, `perfil`) VALUES (NULL,'089.870.670-09','admin@marinafsiq.com','Fulano de Tal','$2a$10$29HyT0J4aMlaPLAIdj9w9OxWT6Z8vieb8qOwfRpt6oVRzR8sc5UVC','ROLE_ADMIN');
